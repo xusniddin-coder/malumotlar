@@ -1,0 +1,288 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+html, body{
+    height: 100%;
+    background: #242529;
+    overflow-x: hidden;
+}
+
+.main{
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
+    background: #242529;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.main::before{
+    content: '';
+    position: absolute;
+    width: clamp(220px, 40vw, 420px);
+    height: clamp(220px, 40vw, 420px);
+    border-radius: 50%;
+    top: 20%;
+    left: 15%;
+    transform: translate(0,-10%);
+    background: linear-gradient(#c82090 , #6a14d1);
+    filter: blur(8px);
+}
+
+.main::after{
+    content: '';
+    position: absolute;
+    width: clamp(200px, 35vw, 380px);
+    height: clamp(200px, 35vw, 380px);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(40%,-10%);
+    background: linear-gradient(#ffc107 , #e91e63);
+    filter: blur(8px);
+}
+
+.main .box{
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    background: transparent;
+    position: relative;
+    border-radius: 10px;
+    border: none;
+    z-index: 5;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    overflow: hidden;
+    padding: 12px;
+}
+
+.main .box::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    background: conic-gradient(
+        from 0deg,
+        #ff0055,
+        #ffae00,
+        #00d084,
+        #00b3ff,
+        #7a5cff,
+        #ff0055
+    );
+    animation: spin 10s linear infinite;
+    filter: brightness(1.1) saturate(1.2);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.main .box::after{
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: 9px;
+    background: rgba(231, 231, 231, 0.1);
+    box-shadow: inset 0 0 8px rgba(255,255,255,0.15);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.main .box > *{
+    position: relative;
+    z-index: 2;
+}
+
+.main .box h2{
+    color: #fff;
+    text-align: center;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    animation: pulse 2s ease-in-out infinite;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.05);
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+}
+
+.main .box .row{
+    width: 90%;
+    height: 50px;
+    background: rgba(231, 231, 231, 0.2);
+    border-radius: 5px;
+    margin: 6px auto;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    transition: 0.3s;
+}
+
+
+.main .box a.row,
+.main .box a.row:link,
+.main .box a.row:visited,
+.main .box a.row:hover,
+.main .box a.row:active{
+    text-decoration: none;
+}
+
+.main .box a.row{
+    outline: none;
+    border: 0;
+    -webkit-tap-highlight-color: transparent;
+    color: inherit;
+    cursor: pointer;
+}
+
+.main .box a.row:focus,
+.main .box a.row:focus-visible,
+.main .box a.row:active{
+    outline: none;
+    box-shadow: none;
+    border: 0;
+}
+
+.main .box .row:hover{
+    background: #fdeaea;
+    transform: scale(1.2);
+    box-shadow: 0 0 14px rgba(255,255,255,0.35);
+}
+
+.main .box .row img{
+    border-radius: 8px;
+    margin-right: 10px;
+    transition: 0.3s;
+    border: 0;
+    display: block;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+@keyframes spin{
+    to{ transform: rotate(360deg); }
+}
+
+@media (max-width: 400px){
+    .main{
+        padding: 12px;
+    }
+    .main .box{
+        padding: 10px;
+        border-radius: 12px;
+    }
+    .main .box::after{
+        border-radius: 11px;
+    }
+    .main .box .row{
+        height: 56px;
+        padding: 8px;
+    }
+    .main .box .row img{
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+    }
+    .main .box .row:hover{
+        transform: scale(1.05);
+    }
+    .main .box .row .tag p{
+        font-size: 13px;
+        letter-spacing: 1.2px;
+        margin-top: -1px;
+    }
+}
+
+@media (min-width: 768px){
+    .main .box{
+        max-width: 520px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce){
+    .main .box::before{
+        animation: none;
+    }
+    .main .box .row,
+    .main .box .row img{
+        transition: none;
+    }
+    .main .box .row:hover{
+        transform: none;
+        box-shadow: none;
+    }
+    .main .box .row:hover img{
+        transform: none;
+        box-shadow: none;
+    }
+}
+
+.main .box .row:hover img{
+    transform: scale(1.5);
+    box-shadow: 0 0 8px rgba(0,0,0,0.5);
+}
+
+.main .box .row .tag p{
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #fff;
+    font-family: "Pump Demi Bold LET";
+    position: relative;
+    left: 10px;
+    transition: 0.5s;
+    margin-top: -2px;
+}
+
+.main .box .row .tag{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    flex: 1;
+    gap: 2px;
+}
+
+.main .box .row .tag strong,
+.main .box .row .tag p{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.main .box .row:hover .tag p{
+    color: #000;
+}
+
+.main .box .row .tag strong{
+    color: #fff;
+    position: relative;
+    left: 10px;
+    transition: 0.3s;
+    font-size: 13px;
+}
+
+.main .box .row:hover .tag strong{
+    color: #000;
+}
